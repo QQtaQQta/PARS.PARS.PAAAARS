@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-lst = []
+my_list = []
 pages = 2
 
 def get_news_info(page_number):
@@ -16,13 +16,13 @@ def get_news_info(page_number):
         link = url['href']
         newsID = int(link[link.find('=')+1:-1])
 
-        lst.append({'title': title, 'id': newsID, 'link': link})
+        my_list.append({'title': title, 'id': newsID, 'link': link})
 
 for page in range(1, pages + 1):
     get_news_info(page)
 
 with open("qwerty.txt", "w") as file:
-    for news_item in lst:
+    for news_item in my_list:
         file.write(f"заголовок: {news_item['title']}\n")
         file.write(f"ID: {news_item['id']}\n")
-        file.write(f"ссылка: {news_item['link']}\n\n\n\n")
+        file.write(f"ссылка: https://www.nstu.ru{news_item['link']}\n\n\n\n")
